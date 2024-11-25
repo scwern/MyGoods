@@ -25,8 +25,16 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> getProducts() {
-        return productService.getAllProducts();
+    public List<Product> getProducts(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Double price,
+            @RequestParam(required = false) Boolean available,
+            @RequestParam(required = false) String sortBy,
+            @RequestParam(required = false) String sortOrder,
+            @RequestParam(required = false) Double priceGreaterThan,
+            @RequestParam(required = false) Double priceLessThan) {
+
+        return productService.getAllProducts(name, price, available, sortBy, sortOrder, priceGreaterThan, priceLessThan);
     }
 
     @GetMapping("/{id}")

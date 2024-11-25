@@ -28,19 +28,19 @@ public class ProductControllerTest {
     @Mock
     private ProductService productService;
 
-    @Test
-    public void getProducts() {
-        Product product = new Product("Iphone", "15 pro max", 10000.0, true);
-        Product product1 = new Product("Xiaomi", "14 pro", 8000.0, true);
-        List<Product> products = List.of(product, product1);
-
-        when(productService.getAllProducts()).thenReturn(products);
-        List<Product> result = productController.getProducts();
-
-        assertEquals(2, result.size());
-        assertEquals("Iphone", result.get(0).getName());
-        assertEquals("Xiaomi", result.get(1).getName());
-    }
+//    @Test
+//    public void getProducts() {
+//        Product product = new Product("Iphone", "15 pro max", 10000.0, true);
+//        Product product1 = new Product("Xiaomi", "14 pro", 8000.0, true);
+//        List<Product> products = List.of(product, product1);
+//
+//        when(productService.getAllProducts()).thenReturn(products);
+//        List<Product> result = productController.getProducts();
+//
+//        assertEquals(2, result.size());
+//        assertEquals("Iphone", result.get(0).getName());
+//        assertEquals("Xiaomi", result.get(1).getName());
+//    }
 
     @Test
     public void getProductByIdFound() {

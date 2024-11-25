@@ -2,6 +2,10 @@ package com.goods.service;
 
 import com.goods.entity.Product;
 import com.goods.repository.ProductRepository;
+import com.goods.specification.ProductFilter;
+import com.goods.specification.ProductSort;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +21,28 @@ public class ProductService {
     }
 
 
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    public List<Product> getAllProducts(String name, Double price, Boolean available, String sortBy, String sortOrder, Double priceGreaterThan, Double priceLessThan) {
+        Specification<Product> spec = Specification.where(ProductFilter.nameLike(name))
+                .and(ProductFilter.priceEqualTo(price))
+                .and(ProductFilter.isAvailable(available));
+
+        if (priceGreaterThan != null) {
+            spec = spec.and(ProductFilter.priceGreaterThan(priceGreaterThan));
+        }
+        if (priceLessThan != null) {
+            spec = spec.and(ProductFilter.priceLessThan(priceLessThan));
+        }
+
+        if (sortBy != null) {
+            Sort.Direction direction = "desc".equalsIgnoreCase(sortOrder) ? Sort.Direction.DESC : Sort.Direction.ASC;
+            if ("name".equalsIgnoreCase(sortBy)) {
+                spec = spec.and(ProductSort.sortByName(direction));
+            } else if ("price".equalsIgnoreCase(sortBy)) {
+                spec = spec.and(ProductSort.sortByPrice(direction));
+            }
+        }
+
+        return productRepository.findAll(spec);
     }
 
     public Optional<Product> getProductById(Long id) {
