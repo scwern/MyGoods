@@ -24,6 +24,7 @@
 
 В программе используется Java 17 и Maven.
 Начиная с ветки t2 можно использовать команду для создания контейнера бд :
+
 docker run --name postgres -e POSTGRES_USER=root -e POSTGRES_PASSWORD=root -e POSTGRES_DB=postgres -p 5432:5432 -d postgres:15
 
 При запуске инициализируется база данных, скрипт которой находится тут : src/main/resources/db/init.sql
