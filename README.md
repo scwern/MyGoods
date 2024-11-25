@@ -44,7 +44,7 @@ docker-compose up --build
 1.	Получить все товары
 	•	GET /products
 	•	Ветка t1: возвращает все товары из списка.
-  •	Ветка t2: возвращает все товары из базы данных.
+  	•	Ветка t2: возвращает все товары из базы данных.
 	•	Ветка t4: поддерживает фильтры и сортировку через параметры запроса.
 Пример (ветка t4): GET /products?name=phone&priceGreaterThan=1000&sortBy=price&sortOrder=asc
 
@@ -58,20 +58,20 @@ docker-compose up --build
 2.	Получить товар по ID
 	•	GET /products/{id}
 	•	Возвращает данные о товаре.
-	3.	Создать товар
+3.	Создать товар
 	•	POST /products
 	•	Создает новый товар. Пример запроса: 
-{
-    "name": "New Product",
-    "description": "Description",
-    "price": 99.99,
-    "available": true
-}
+		{
+		    "name": "New Product",
+		    "description": "Description",
+		    "price": 99.99,
+		    "available": true
+		}
 
-	4.	Обновить товар
+4.	Обновить товар
 	•	PUT /products/{id}
 	•	Обновляет данные товара.
-	5.	Удалить товар
+5.	Удалить товар
 	•	DELETE /products/{id}
 	•	Удаляет товар.
 
